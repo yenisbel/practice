@@ -130,3 +130,181 @@ var myAtoi = function(str) {
   }
   
 };
+
+//Roman to Int
+function toInt(s) {
+  let result = 0;
+  let hasRoman = {I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000};
+  const strArr = s.split('');
+  for(let i = 0; i < strArr.length; i++){
+    let current = strArr[i];
+    let valueCur = hasRoman[current];
+    let next = strArr[i + 1];
+    let nextCur = hasRoman[next];
+
+    if(valueCur < nextCur){
+      result -= valueCur;
+    }else {
+      result += valueCur
+    }
+  }
+  return result
+};
+
+// 3Sum
+//Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
+//Find all unique triplets in the array which gives the sum of zero.
+
+
+function threeSums(nums, target){
+  let result = [];
+  if (nums.length < 3) return 0;
+  nums = nums.sort((a,b)=> a - b);
+  for (let i = 0; i < nums.length - 2; i++) {
+		if (nums[i] > 0) {
+			return result;
+		}
+		if (i > 0 && nums[i] == nums[i - 1]) {
+			continue;
+		}
+		for (let j = i + 1, k = nums.length - 1; j < k;) {
+			if (nums[i] + nums[j] + nums[k] === target) {
+				result.push([nums[i], nums[j], nums[k]]);
+				j++;
+				k--;
+				while (j < k && nums[j] == nums[j - 1]) {
+					j++;
+				}
+				while (j < k && nums[k] == nums[k + 1]) {
+					k--;
+				}
+			} else if (nums[i] + nums[j] + nums[k] > 0) {
+				k--;
+			} else {
+				j++;
+			}
+		}
+  }
+  return result
+}
+
+//Remove Duplicates in Place without extra space in memory
+
+//First approach no good
+function removeDuplicates(nums) {
+  for(let i = 0; i< nums.length; i ++){
+    if(nums[i] === nums[i + 1]){
+      nums.splice(i+1, 1)
+    }
+  }
+  return nums
+}
+// Two pointer one for unique and other for current
+function removeDuplicatesinPlace(nums) {
+  let pointer = 0;
+  for(let i = 0; i< nums.length; i ++){
+    if(nums[pointer] !== nums[i]){
+      pointer ++;
+      nums[pointer] = nums[i]
+    }
+  }
+  console.log(nums);
+  return pointer + 1
+}
+
+
+// CountDuplicates
+function countDuplicates(params) {
+  params.sort();
+  let counter = 0;
+  for (let i = 0; i < params.length; i++) {
+    if (params[i] !== params[i+ 1]) {
+      counter += 1
+    }
+  };
+  return counter
+}
+
+//Multiply Strings
+
+function multiplyStrings(num1, num2) {
+  if (num1 === '0' || num2 === '0') return '0';
+  let resultProd = new Array(num1.length + num2.length);
+  resultProd.fill(0);
+  let position = resultProd.length-1;
+  for (let i = num1.length-1; i >= 0; i--) {
+    let tempPos = position;
+    for (let j = num2.length -1; j >=0; j--) {
+      resultProd[tempPos] += parseInt(num1.charAt(i)) * parseInt(num2.charAt(j));
+      resultProd[tempPos-1] += Math.floor(resultProd[tempPos] / 10); // carry
+      resultProd[tempPos] %= 10;
+      tempPos -= 1;
+    }
+   position -=1; 
+  }
+  return resultProd.join("").replace(/^0+/, "")
+}
+
+//Group Anagrams
+function anaGrams(arrStr){
+  let result = [];
+  let hasReversed = {};
+  for(let i = 0; i < arrStr.length; i++){
+    let word = arrStr[i];
+    if(hasReversed.key(reverse(word))){
+      hasReversed[word].push(word)
+    }else{
+      hasReversed[word] = []
+    }
+  }
+}
+
+function reverse(word){
+  if (word === word.split('').reverse().join(''))
+  return word
+}
+
+
+function anagrmas(params) {
+  let hasAnagr = {}
+  params.forEach(word => {
+    let key = [...word].sort().join('');
+    if(hasAnagr[key]){
+      hasAnagr[key].push(word)
+    }else{
+      hasAnagr[key] = [word]
+    }
+  });
+  return hasAnagr.values()
+}
+// ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+// Add sum Binary
+
+function addBinary(num1, num2){
+  (parseInt(num1)+parseInt(num2)).toString(2)
+}
+
+//another way
+function addBina(a, b) {
+  var i = a.length - 1;
+  var j = b.length - 1;
+  var carry = 0;
+  var result = "";
+  while(i >= 0 || j >= 0) {
+    var m = i < 0 ? 0 : a[i] | 0;
+    var n = j < 0 ? 0 : b[j] | 0;
+    carry += m + n; // sum of two digits
+    result = carry % 2 + result; // string concat
+    carry = carry / 2 | 0; // remove decimals,  1 / 2 = 0.5, only get 0
+    i--;
+    j--;
+  }
+  if(carry !== 0) {
+      result = carry + result;
+  }
+  return result;
+
+
+}
+
