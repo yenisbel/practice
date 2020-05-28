@@ -130,3 +130,26 @@ var myAtoi = function(str) {
   }
   
 };
+
+//  Unique Email Addresses
+
+var numUniqueEmails = function(emails) {
+  const set = new Set();
+  for(let idx = 0; idx < emails.length; idx ++){
+      let[local, domain] = emails[idx].split('@');
+      // let email = emails[idx];
+      // let parts = email.split('@');
+      // let local = parts[0];
+      // let domain = parts[1];
+      let expression = RegExp('/(\.)|(\+.*)/g'); 
+      local = local.replace(expression, '');
+      // if(local.includes('+')){
+      //     local = local.substring(0, local.indexOf('+'));
+          
+      // };
+      // local = local.replace('.', '');
+      set.add(`${local}@${domain}`);
+  }
+  console.log(set)
+  return set.size
+};
