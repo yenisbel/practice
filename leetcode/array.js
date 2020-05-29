@@ -153,3 +153,29 @@ var numUniqueEmails = function(emails) {
   console.log(set)
   return set.size
 };
+
+// Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+// Note: For the purpose of this problem, we define empty string as valid palindrome.
+
+// Example 1:
+
+// Input: "A man, a plan, a canal: Panama"
+// Output: true
+
+var isPalindrome = function(s) {
+  const alphanum = s.toLowerCase().replace(/[\W]/g, "");
+  
+  let front = 0;
+  let back = alphanum.length - 1;
+  
+  while (front < back) {
+      if (alphanum[front] != alphanum[back]) {
+          return false;
+      }
+      front++;
+      back--;
+  }
+  
+  return true;
+};
