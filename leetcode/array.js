@@ -111,6 +111,43 @@ var lengthOfLongestSubstring = function(s) {
   return maxResult
 };
 
+//Longest Substring with sliding window
+
+function longestSubstr(s){
+  let i = 0;
+  let j = 0;
+  let set = new Set();
+  let countMax = 0;
+
+  while(i < s.length && j < s.length){
+    let letter = s[j];
+    if(set.has(letter)){
+      set.delete(s[i]);
+      i ++;
+    }else{
+      set.add(letter);
+      j++;
+      countMax = Math.max(countMax, j - i)
+    } 
+  };
+  return countMax
+}
+//Less eficiency, cause find each substrs and compare lengths
+function longestSubstr(s) {
+  let set = new Set();
+  let countMax = 0;
+  for(let i = 0; i < s.length; i++){
+    let letter = s[i];
+    if(set.has(letter)){
+      break
+    }else{
+      set.add(letter)
+    };
+    countMax = Math.max(countMax, set.size)
+  };
+  return countMax
+}
+
 //Implement atoi which converts a string to an integer.
 //The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting 
 //from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value
@@ -171,7 +208,7 @@ var isPalindrome = function(s) {
   
   while (front < back) {
       if (alphanum[front] != alphanum[back]) {
-          return false;
+        return false;
       }
       front++;
       back--;
@@ -179,3 +216,5 @@ var isPalindrome = function(s) {
   
   return true;
 };
+
+
