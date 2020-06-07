@@ -263,3 +263,19 @@ var maxProfit = function(prices) {
   }
   return profit
 };
+
+//Unique email addresses
+
+function uniqueEmail(emails){
+  let hash = {};
+  let expressFind = RegExp(/(\.)|(\+.*)/g);
+  for (let i = 0; i < emails.length; i++) {
+    const email = emails[i];
+    let[local, domain] = email.split('@');
+    local = local.replace(expressFind, '');
+    hash[`${local}@${domain}`] = true;
+  }
+  return Object.keys(hash).length
+}
+
+
