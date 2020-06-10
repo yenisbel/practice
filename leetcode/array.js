@@ -279,3 +279,24 @@ function uniqueEmail(emails){
 }
 
 
+
+
+// Complete the numberPairs function below.Example[1,2,1,2,1,3,2] output: 2 pairs 
+
+function numberPairs(n, ar) {
+  let hash = {};
+  ar.forEach(number =>{
+      typeof hash[number] === 'undefined'? hash[number] = 1 : hash[number] += 1 
+  });
+  return Object.values(hash).reduce((acc, value)=>{
+      acc += Math.floor(value/2);
+      return acc;
+  }, 0)
+
+
+}
+
+
+
+
+

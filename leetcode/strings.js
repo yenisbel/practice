@@ -69,3 +69,21 @@ function maxTime(str){
   // return `${hours}:${minutes}`
   return `${hours}:${minutes}`
 }
+
+// Complete the countingValleys function below.
+function countingValleys(n, s) {
+  s = s.split('');
+  s = s.map(step=> ((step === 'D') ? -1 : 1));
+  let valleys = 0;
+  let flagIsValley = false;
+  for(let i = 0; i < s.length; i++){
+      valleys += s[i];
+      if (valleys < 0 && !flagIsValley){
+          flagIsValley = true
+      }else if(valleys === 0 && flagIsValley){
+          valleys ++;
+          flagIsValley = false
+      }
+  };
+  return valleys   
+}
