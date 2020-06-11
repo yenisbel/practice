@@ -87,3 +87,21 @@ function countingValleys(n, s) {
   };
   return valleys   
 }
+
+//Passing all test in Counting valleys 
+function countingValleys(n, s) {
+  let valleys = 0;
+  let altitude =0;
+  for (let i = 0; i < s.length; i++) {
+    const step = s[i];
+    if (step === 'U') {
+      altitude ++;
+      if (altitude === 0) {
+        valleys ++
+      }
+    } else {
+      altitude --
+    }; 
+  };
+  return valleys
+}

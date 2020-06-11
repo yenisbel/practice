@@ -296,7 +296,22 @@ function numberPairs(n, ar) {
 
 }
 
-
+// Complete the jumpingOnClouds function below. Input 7, [0 0 1 0 0 1 0], bad clouds with number 1, only can jump 1 or 2 steps on 0 cloud
+//Return the least jump that we need to do to get the last cloud
+function jumpingOnClouds(c) {
+  let jumps = 0;
+  let i = 0;
+  while(i < c.length - 1){
+    if (c[i + 2] === 1) {
+      i++;
+      jumps++;
+    }else{
+      i += 2;
+      jumps ++
+    }
+  }
+  return jumps
+}
 
 
 
