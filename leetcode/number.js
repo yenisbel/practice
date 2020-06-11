@@ -31,10 +31,28 @@ var guessNumber = function(n) {
   let i = 1;
   while(i <= n){
       if(guess(i) !== 0){
-          i++
+        i++
       }else{
-          return i
+        return i
       }
   }
+ 
+};
+//More efficiency
+var guessNumber = function(n) {
+  let i = 1;
+  let j = n;
+  let pivot = 0;
+  while(i <= j){
+      pivot = Math.floor((i + j)/2);
+      if(guess(pivot) === 0){
+          return pivot           
+      }else if(guess(pivot) === -1){
+          j = pivot - 1 
+      }else{
+          i = pivot + 1
+      }
+  }
+  return pivot
  
 };
