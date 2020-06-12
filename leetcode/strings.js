@@ -105,3 +105,55 @@ function countingValleys(n, s) {
   };
   return valleys
 }
+
+//Count the number of letter' 'a' than can appear in string that can repeated indefenitly n times
+// Complete the repeatedString function below.
+function repeatedString(s, n) {
+  s = s.toLowerCase();
+  let remainder = n % s.length;
+  let exactStrIn = (n - remainder)/s.length;
+  let countA = 0;
+  for(let i = 0; i< s.length; i++){
+    if(s[i] === 'a'){
+      countA = countA + exactStrIn + (i < remainder)
+    }
+  }
+  return countA
+}
+
+
+// Complete the makeAnagram function below.
+function makeAnagram(a, b) {
+  if(a === b.split('').reverse().join('')){
+      return 0
+  };
+  let hash = {};
+ for(let i = 0; i < a.length; i++){
+     if(typeof hash[a[i]] === 'undefined'){
+         hash[a[i]] = 1
+     }else{
+         hash[a[i]] += 1
+     }
+ };
+  console.log(hash)
+  let hash1 = {};
+ for(let j = 0; j < b.length; j++){
+     if(typeof hash1[b[j]] === 'undefined'){
+         hash1[b[j]] = 1
+     }else{
+         hash1[b[j]] += 1
+     }
+ };
+ console.log(hash1)
+ let count = 0;
+  for(let key in hash){
+      if(typeof hash1[key] !== 'undefined'){
+          if(hash[key] !== hash1[key]){
+              count += Math.abs(hash[key] - hash1[key])
+          }
+      }else{
+          count ++
+      }
+  }
+  return count
+}
