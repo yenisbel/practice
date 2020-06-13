@@ -157,3 +157,26 @@ function makeAnagram(a, b) {
   }
   return count
 }
+
+// Complete the makeAnagram function below.
+
+function makeAnagram(a, b) {
+  let hash = {};
+  for (let i = 0; i < a.length; i++) {
+    if (typeof hash[a[i]] === 'undefined') {
+      hash[a[i]] = 1
+    } else {
+      hash[a[i]] += 1
+    }
+  };
+  for (let j = 0; j < b.length; j++) {
+    if (typeof hash[b[j]] === 'undefined') {
+      hash[b[j]] = - 1
+    } else {
+      hash[b[j]] -= 1
+    }
+  };
+  let acc = 0;
+  return Object.values(hash).reduce((acc, value) => acc += Math.abs(value))
+  
+}
