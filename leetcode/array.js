@@ -54,6 +54,22 @@ var twoSum = function(numbers, target) {
   
 };
 
+// More efficent
+var twoSum = function(numbers, target) {
+  let i = 0;
+  let j = numbers.length - 1;
+  while(i <= j){
+    let sumaP = numbers[i] + numbers[j];
+    if(sumaP === target){
+      return [i + 1, j + 1]
+    }else if(sumaP > target){
+      j --
+    }else{
+      i++
+    }
+  }
+}
+
 // Given an array nums, write a function to move all 0's to the end 
 // of it while maintaining the relative order of the non-zero elements.
 var moveZeroes = function(arr) {
