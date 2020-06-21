@@ -26,6 +26,33 @@ const twoSumL = function(nums, target) {
       
   };
 };
+// Second part of Sum II
+// Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+// The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
+
+// Note:
+
+// Your returned answers (both index1 and index2) are not zero-based.
+// You may assume that each input would have exactly one solution and you may not use the same element twice.
+// Example:
+
+// Input: numbers = [2,7,11,15], target = 9
+// Output: [1,2]
+var twoSum = function(numbers, target) {
+  let hash = {};
+  for(let i = 0; i < numbers.length; i++){
+      let index1 = i + 1;
+      let second = target - numbers[i];
+      if(hash.hasOwnProperty(second)){
+          return (i === 0) ? [index1, (numbers.indexOf(second) + 1), ] : [(numbers.indexOf(second) + 1), index1]
+          
+      }else{
+          hash[numbers[i]] = i
+      }
+  }
+  
+};
 
 // Given an array nums, write a function to move all 0's to the end 
 // of it while maintaining the relative order of the non-zero elements.
@@ -311,6 +338,27 @@ function jumpingOnClouds(c) {
     }
   }
   return jumps
+}
+
+//Product of Array except self
+
+function productArry(numbers) {
+  let result = new Array(numbers.length);
+  
+  let before = 1;
+  for (let i = 0; i < numbers.length; ++i) {
+    result[i] = before;
+    before *= numbers[i];
+  }
+
+
+  let after = 1;
+  for (let i = numbers.length - 1; i >= 0; --i) {
+    result[i] *= after;
+    after *= numbers[i];
+  }
+ 
+  return result;
 }
 
 

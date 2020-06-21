@@ -105,13 +105,6 @@ function threeSum(nums){
 }
 
 
-billie523's avatar
-billie523
-57
-Last Edit: October 8, 2018 11:51 AM
-
-9.7K VIEWS
-
 /**
  
  */
@@ -148,3 +141,4 @@ function threeSum(nums) {
 	}
 	return rtn;
 };
+
